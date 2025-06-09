@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +9,14 @@ public class CurrencyRepository
     // repository : 데이터의 영속성을 보장한다. + 인프라
     // 프로그램을 종료해도 데이터가 보존되는 것.
     // save
-    public void Save(List<CurrencyDTO> currencies)
+    public void Save(List<CurrencyDTO> dataList)
     {
         CurrencySaveDatas datas = new CurrencySaveDatas();
         
-        datas.DataList = currencies.ConvertAll(data => new CurrencySaveData()
+        datas.DataList = dataList.ConvertAll(data => new CurrencySaveData
         {
-            Value = data.Value,
-            Type = data.Type
+            Type = data.Type,
+            Value = data.Value
         });
         
         string json = JsonUtility.ToJson(datas);
@@ -35,11 +36,13 @@ public class CurrencyRepository
     }
 }
 
+[Serializable]
 public struct CurrencySaveData
 {
     public EcurrencyType Type;
     public int Value;
 }
+[Serializable]
 public class CurrencySaveDatas
 {
     public List<CurrencySaveData> DataList;

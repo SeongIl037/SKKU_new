@@ -5,6 +5,7 @@ public enum EcurrencyType
 {
     Gold,
     Diamond,
+    
     Count
 }
 public class Currency

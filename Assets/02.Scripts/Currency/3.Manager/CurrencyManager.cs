@@ -32,14 +32,16 @@ public class CurrencyManager : MonoBehaviour
     // 관리자 = Manager (추가, 삭제 등) , 관리 + 창구
     private void Init()
     {
+        // 생성하기
+        _currencies = new Dictionary<EcurrencyType, Currency>((int)EcurrencyType.Count);
+ 
         // 레포지토리 생성
         _repository = new CurrencyRepository();
 
         List<CurrencyDTO> loadedCurrencies = _repository.Load();
+        
         if (loadedCurrencies == null)
         {
-            // 생성하기
-            _currencies = new Dictionary<EcurrencyType, Currency>();
             for (int i = 0; i < (int)EcurrencyType.Count; ++i)
             {
                 EcurrencyType type = (EcurrencyType)i;
@@ -83,9 +85,6 @@ public class CurrencyManager : MonoBehaviour
         {
             return false;   
         }
-        
-        _currencies[type].TryBuy(value);
-        
         _repository.Save(ToDTOList());
         OnDataChange?.Invoke();
 
