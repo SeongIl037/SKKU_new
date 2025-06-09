@@ -16,11 +16,6 @@ namespace Unity.FPS.AI
             Enemies = new List<EnemyController>();
         }
 
-        private void Update()
-        {
-            Debug.Log(NumberOfEnemiesRemaining);
-        }
-
         public void RegisterEnemy(EnemyController enemy)
         {
             Enemies.Add(enemy);
