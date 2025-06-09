@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unity.FPS.Game;
 using UnityEngine;
 
@@ -13,6 +14,11 @@ namespace Unity.FPS.AI
         void Awake()
         {
             Enemies = new List<EnemyController>();
+        }
+
+        private void Update()
+        {
+            Debug.Log(NumberOfEnemiesRemaining);
         }
 
         public void RegisterEnemy(EnemyController enemy)
