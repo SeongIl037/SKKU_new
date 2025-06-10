@@ -72,10 +72,12 @@ public class CurrencyManager : MonoBehaviour
     {
         _currencies[type].Add(value);
         
+        
+        AchieveManager.Instance.Increase(EachievementCondition.GoldCollect, value);
+        
         _repository.Save(ToDTOList());
         OnDataChange?.Invoke();
         
-        Debug.Log($"Add {_currencies[type].Value} to currency");
     }
     
 

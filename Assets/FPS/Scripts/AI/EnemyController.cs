@@ -372,6 +372,8 @@ namespace Unity.FPS.AI
                 Instantiate(LootPrefab, transform.position, Quaternion.identity);
             }
             CurrencyManager.Instance.Add(EcurrencyType.Gold, 100);
+            AchieveManager.Instance.Increase(EachievementCondition.DronKillCount, 1);
+            
             // this will call the OnDestroy function
             Destroy(gameObject, DeathDuration);
         }
