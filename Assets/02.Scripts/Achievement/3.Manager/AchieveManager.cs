@@ -37,12 +37,13 @@ public class AchieveManager : MonoBehaviour
     }
     private void Init()
     {
-        
-        _achievements = new List<Achievement>();
-        
+        // 리스트 초기화하기
+        _achievements = new List<Achievement>(); 
+        // 저장된 데이터 불러올 준비
         _achievementRepository = new AchievementRepository();
+        // 저장된 데이터 옮기기
         List<AchievementSaveData> saveDatas = _achievementRepository.Load();
-        
+        // 데이터 추가하기 -> 
         foreach (var metaData in _metaDatas)
         {
             Achievement duplicate = FindByID(metaData.ID);
@@ -55,7 +56,6 @@ public class AchieveManager : MonoBehaviour
             Achievement achievement = new Achievement(metaData, saveData);
             _achievements.Add(achievement);
         }
-
     }
 
     public void Increase(EachievementCondition condition, int value)
