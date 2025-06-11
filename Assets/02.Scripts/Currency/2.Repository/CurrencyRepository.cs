@@ -9,7 +9,7 @@ public class CurrencyRepository
     // repository : 데이터의 영속성을 보장한다. + 인프라
     // 프로그램을 종료해도 데이터가 보존되는 것.
     // save
-    public void Save(List<CurrencyDTO> dataList)
+    public void Save(List<CurrencyDTO> dataList, string id)
     {
         CurrencySaveDatas datas = new CurrencySaveDatas();
         
@@ -20,16 +20,16 @@ public class CurrencyRepository
         });
         
         string json = JsonUtility.ToJson(datas);
-        PlayerPrefs.SetString (SAVE_KEY, json);
+        PlayerPrefs.SetString (SAVE_KEY + "_" + id, json);
     }
     // load
-    public List<CurrencyDTO> Load()
+    public List<CurrencyDTO> Load(string id)
     {
-        if (!PlayerPrefs.HasKey(SAVE_KEY))
+        if (!PlayerPrefs.HasKey(SAVE_KEY + "_" + id))
         { 
             return null;   
         }
-        string json = PlayerPrefs.GetString (SAVE_KEY);
+        string json = PlayerPrefs.GetString (SAVE_KEY + "_" + id);
         CurrencySaveDatas datas = JsonUtility.FromJson<CurrencySaveDatas> (json);
         
         return datas.DataList.ConvertAll<CurrencyDTO>(data => new CurrencyDTO(data.Type,data.Value));

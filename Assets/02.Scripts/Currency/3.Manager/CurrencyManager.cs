@@ -38,7 +38,7 @@ public class CurrencyManager : MonoBehaviour
         // 레포지토리 생성
         _repository = new CurrencyRepository();
 
-        List<CurrencyDTO> loadedCurrencies = _repository.Load();
+        List<CurrencyDTO> loadedCurrencies = _repository.Load(AccountManager.Instance.CurrentAccount.Email);
         
         if (loadedCurrencies == null)
         {
@@ -75,7 +75,7 @@ public class CurrencyManager : MonoBehaviour
         
         AchieveManager.Instance.Increase(EachievementCondition.GoldCollect, value);
         
-        _repository.Save(ToDTOList());
+        _repository.Save(ToDTOList(), AccountManager.Instance.CurrentAccount.Email);
         OnDataChange?.Invoke();
         
     }
@@ -87,7 +87,7 @@ public class CurrencyManager : MonoBehaviour
         {
             return false;   
         }
-        _repository.Save(ToDTOList());
+        _repository.Save(ToDTOList(), AccountManager.Instance.CurrentAccount.Email);
         OnDataChange?.Invoke();
 
         return true;

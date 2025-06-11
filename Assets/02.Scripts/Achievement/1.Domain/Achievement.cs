@@ -14,6 +14,7 @@ public enum EachievementCondition
 }
 public class Achievement
 {
+    
     public readonly string ID;
     public readonly string Name;
     public readonly string Description;
