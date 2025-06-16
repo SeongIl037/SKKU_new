@@ -31,7 +31,6 @@ public class AccountManager : MonoBehaviour
         // 저장된 아이디 가져오기
         _accountRepository = new AccountRepository();
         
-        
     }
     
     private const string SALT = "12345678";

@@ -27,9 +27,8 @@ public class AccountNicknameSpecification : ISpecification<string>
             if (nickname.Contains(forbidden))
             {
                 ErrorMessage = $"닉네임에 부적절한 단어가 포함되어 있습니다: {forbidden}";
+                return false;
             }
-
-            return false;
         }
         
         return true;

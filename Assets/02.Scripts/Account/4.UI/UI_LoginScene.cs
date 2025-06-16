@@ -36,6 +36,12 @@ public class UI_LoginScene : MonoBehaviour
         
         LoginCheck();
     }
+
+    private void Update()
+    {
+        LoginCheck();
+    }
+
     //회원가입하기
     public void OnClickGoToRegisterButton()
     {
@@ -62,25 +68,33 @@ public class UI_LoginScene : MonoBehaviour
         var accountNicknameSpecification = new AccountNicknameSpecification();
         var accountPasswordSpecification = new AccountPasswordSpecification();
         
-        
         if (!accountEmailSpecification.IsStatisfiedBy(id))
         {
             RegisterInputField.ResultText.text = accountEmailSpecification.ErrorMessage;
             Feedback();
+            Debug.Log("1");
+
             return;
         }
+
+        Debug.Log(accountPasswordSpecification.IsStatisfiedBy(password));
 
         if (!accountNicknameSpecification.IsStatisfiedBy(nickname))
         {
             RegisterInputField.ResultText.text = accountNicknameSpecification.ErrorMessage;
             Feedback();
+            Debug.Log("2");
+
             return;
         }
         
+        
+        Debug.Log(accountPasswordSpecification.IsStatisfiedBy(password));
         // //2. 비밀번호 입력을 확인한다.
         if (!accountPasswordSpecification.IsStatisfiedBy(password))
         {
             RegisterInputField.ResultText.text = accountPasswordSpecification.ErrorMessage;
+            Debug.Log($"{accountPasswordSpecification.ErrorMessage}");
             Feedback();
             return;
         }

@@ -8,6 +8,7 @@ public class AccountPasswordSpecification : ISpecification<string>
         if (string.IsNullOrEmpty(password))
         {
             ErrorMessage = "비밀번호가 비어있습니다.";
+            
             return false;
         }
         

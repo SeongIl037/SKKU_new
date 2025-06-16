@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttendaceSO
   m_EditorClassIdentifier: 
   _id: 3day
-  _startDate: 2025-06-01
+  _startDate: 2025-06-16
   _attendanceRewards:
   - {fileID: 11400000, guid: 125b1a4cb7e803e49b7e5f83ae256c2d, type: 2}
   - {fileID: 11400000, guid: 437c3729652161242a810dd1dae6684a, type: 2}

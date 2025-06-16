@@ -9,10 +9,10 @@ public class Attendance
     public readonly string ID;
     public readonly DateTime StartTime; // 출석 이벤트를 언제 시작할 것인가?
     public DateTime LastCheckDate { get; private set; } // 마지막 출석일
-    public int DayCount { get; private set; } // 출석일
+    public int DayCount { get; private set; } // 출석수
     
     private List<AttendanceReward> _rewards;
-    
+    public List<AttendanceReward> Rewards => _rewards;
     public Attendance(string id,DateTime startTime, DateTime lastCheckDate, int dayCount)
     {
         if (string.IsNullOrEmpty(id))
@@ -54,12 +54,11 @@ public class Attendance
             throw new Exception("출석체크하는 데이트가 지정되지 않았습니다.");
         }
         // ToDo : year과 month도 비교해야한다.
-        if (LastCheckDate.Day < date.Day)
+        if (LastCheckDate.Day < date.Day && LastCheckDate.Year == date.Year && LastCheckDate.Month == date.Month)
         {
             DayCount += 1;
             LastCheckDate = date;
         }
-        
         
     }
     // 상위 도메인 만이 하위 도메인을 수정할 수 있다.
@@ -83,6 +82,7 @@ public class Attendance
         {
             return false;
         }
+        
         return _rewards[day -1].TryClaim();
     }
 

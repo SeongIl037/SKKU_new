@@ -35,11 +35,9 @@ public class Account
         {
             throw new Exception("비밀번호는 비어있을 수 없습니다.");
         }
+        
         var passwordspecification = new AccountPasswordSpecification();
-        if (!passwordspecification.IsStatisfiedBy(password))
-        {
-            throw new Exception(passwordspecification.ErrorMessage);
-        }
+        Debug.Log($"{password}");
 
         Email = email;
         Nickname = nickname;

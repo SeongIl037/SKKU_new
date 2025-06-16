@@ -42,7 +42,7 @@ public class AchieveManager : MonoBehaviour
         // 저장된 데이터 불러올 준비
         _achievementRepository = new AchievementRepository();
         // 저장된 데이터 옮기기
-        List<AchievementSaveData> saveDatas = _achievementRepository.Load();
+        List<AchievementSaveData> saveDatas = _achievementRepository.Load(AccountManager.Instance.CurrentAccount.Email);
         // 데이터 추가하기 -> 
         foreach (var metaData in _metaDatas)
         {
@@ -92,7 +92,7 @@ public class AchieveManager : MonoBehaviour
         if (achievement.TryClaimReward())
         {
             CurrencyManager.Instance.Add(achievement.RewardCurrencyType, achievement.RewardAmount);
-            _achievementRepository.Save(Achievements);
+            _achievementRepository.Save(Achievements, AccountManager.Instance.CurrentAccount.Email);
             OnAchievementsUpdated?.Invoke();
             return true;
         }

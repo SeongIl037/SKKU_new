@@ -44,19 +44,26 @@ public class AttendanceManger : MonoBehaviour
             {
                 attendance.AddReward(new AttendanceReward(attendanceRewardSO.CurrnecyType, attendanceRewardSO.Amount,false));   
             }
+            _attendances.Add(attendance);
         }
+        
         StartCoroutine(Check_Coroutine());
     }
 
+    public int CountAttendances(string id)
+    {
+        Attendance attendance = FindById(id);
+        return attendance.Rewards.Count;
+    }
     private Attendance FindById(string id)
     {
+        
         Attendance attendance = _attendances.Find(x => x.ID == id);
         return attendance;
     }
     public AttendanceDTO GetAttendance(string id)
     {
         Attendance attendance = FindById(id);
-
         if (attendance == null)
         {
             throw new Exception("Attendance not found");
@@ -68,17 +75,15 @@ public class AttendanceManger : MonoBehaviour
     public bool TryRewardClaim(string id, int index)
     {
         Attendance attendance = FindById(id);
-        if (FindById(id).TryClaim(index))
-        {
-            return false;
-        };
+        
         if (attendance.TryClaim(index))
         {
             AttendanceRewardDTO reward = attendance.GetReward(index);
-            return true;
             
             CurrencyManager.Instance.Add(reward.CurrencyType, reward.Amount);
             OnDateChanged?.Invoke();
+
+            return true;
         }
 
         return false;

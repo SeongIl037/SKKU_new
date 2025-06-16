@@ -10,4 +10,5 @@ public class AttendanceRewardSO : ScriptableObject
     private int _amount;
     public int Amount => _amount;
     
+    
 }
