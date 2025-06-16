@@ -13,11 +13,11 @@ public class AccountEmailSpecification : ISpecification<string>
             ErrorMessage = "이메일은 비어있을 수 없습니다";
             return false;
         }
-        if (EmailRegex.IsMatch(email))
-        {
-            ErrorMessage = "올바른 이메일 형식이 아닙니다.";
-            return false;
-        }
+        // if (EmailRegex.IsMatch(email))
+        // {
+        //     ErrorMessage = "올바른 이메일 형식이 아닙니다.";
+        //     return false;
+        // }
         return true;
     }
     

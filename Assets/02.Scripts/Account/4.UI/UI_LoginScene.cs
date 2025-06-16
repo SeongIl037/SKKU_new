@@ -77,13 +77,14 @@ public class UI_LoginScene : MonoBehaviour
             return;
         }
         
-        //2. 비밀번호 입력을 확인한다.
+        // //2. 비밀번호 입력을 확인한다.
         if (!accountPasswordSpecification.IsStatisfiedBy(password))
         {
             RegisterInputField.ResultText.text = accountPasswordSpecification.ErrorMessage;
             Feedback();
             return;
         }
+        
         //3. 2차 비밀번호 입력을 확인하고, 1차 비밀번호 입력과 같은지 확인한다.
         if (string.IsNullOrEmpty(passwordComfirm))
         {
@@ -164,7 +165,7 @@ public class UI_LoginScene : MonoBehaviour
         string password = LoginInputField.PasswordInputField.text;
         var accountPasswordSpecification = new AccountPasswordSpecification();
         //2. 비밀번호 입력을 확인한다.
-        if (accountPasswordSpecification.IsStatisfiedBy(password))
+        if (!accountPasswordSpecification.IsStatisfiedBy(password))
         {
             LoginInputField.ResultText.text = accountPasswordSpecification.ErrorMessage;
             Feedback();
